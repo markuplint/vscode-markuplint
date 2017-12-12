@@ -1,31 +1,25 @@
 import * as path from 'path';
-import * as vscode from 'vscode';
-import { LanguageClient, SettingMonitor } from 'vscode-languageclient';
 
-export function activate(context: vscode.ExtensionContext) {
-    console.log('Congratulations, your extension "vscode-markuplint" is now active!');
+import { workspace, ExtensionContext } from 'vscode';
+import { LanguageClient, LanguageClientOptions, ServerOptions, TransportKind } from 'vscode-languageclient';
 
-    const serverModulePath = path.join(__dirname, 'server', 'server.js');
-    const workspaceConfig = vscode.workspace.getConfiguration('markuplint');
-    const additionalDocuments: string[] = workspaceConfig.get('additionalDocumentSelectors') || [];
+export function activate(context: ExtensionContext) {
+	const serverModule = context.asAbsolutePath(path.join('out', 'server.js'));
+	const debugOptions = { execArgv: ["--nolazy", "--debug=6009"] };
 
-    const client = new LanguageClient('markuplint', {
-        run: {
-            module: serverModulePath,
-        },
-        debug: {
-            module: serverModulePath,
-            options: {
-                execArgv: ['--nolazy', '--inspect=7000'],
-            },
-        },
-    }, {
-        documentSelector: ['html', ...additionalDocuments],
-        synchronize: {
-            configurationSection: 'markuplint',
-            fileEvents: vscode.workspace.createFileSystemWatcher('**/{.markuplintrc,markuplint.json}'),
-        },
-    });
+	const serverOptions: ServerOptions = {
+		run : { module: serverModule, transport: TransportKind.ipc },
+		debug: { module: serverModule, transport: TransportKind.ipc, options: debugOptions }
+	}
 
-    context.subscriptions.push(new SettingMonitor(client, 'markuplint.enable').start());
+	const clientOptions: LanguageClientOptions = {
+		documentSelector: [{scheme: 'file', language: 'html'}],
+		synchronize: {
+			configurationSection: 'markuplint',
+			fileEvents: workspace.createFileSystemWatcher('**/.clientrc')
+		}
+	}
+
+	const disposable = new LanguageClient('markuplint', 'markuplint server', serverOptions, clientOptions).start();
+	context.subscriptions.push(disposable);
 }
