@@ -4,6 +4,12 @@
     "description": "markuplint for VS Code",
     "version": "0.1.0",
     "publisher": "YusukeHirao",
+    "license": "MIT",
+	"icon": "./media/icon.png",
+	"galleryBanner": {
+		"color": "#0071BC",
+		"theme": "light"
+	},
     "engines": {
         "vscode": "^1.18.0"
     },
