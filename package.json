@@ -8,11 +8,7 @@
         "vscode": "^1.18.0"
     },
     "categories": [
-        "HTML",
-        "SVG",
-        "Web Components",
-        "MathML",
-        "AMP",
+        "Languages",
         "Linters"
     ],
     "activationEvents": [
