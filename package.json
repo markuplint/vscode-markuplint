@@ -3,10 +3,10 @@
     "displayName": "markuplint",
     "description": "markuplint for VS Code",
     "version": "0.1.0",
-    "publisher": "YusukeHirao",
+    "publisher": "yusukehirao",
     "license": "MIT",
     "repository": "git@github.com:YusukeHirao/vscode-markuplint.git",
-	"icon": "./media/icon.png",
+	"icon": "media/icon.png",
 	"galleryBanner": {
 		"color": "#0071BC",
 		"theme": "light"
