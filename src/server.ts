@@ -1,17 +1,19 @@
-require('util.promisify/shim')();
+require('util.promisify/shim')(); // tslint:disable-line
+
 import * as path from 'path';
+
 import * as markuplint from 'markuplint';
-import { getRuleset } from 'markuplint/lib/ruleset';
 import { getRuleModules } from 'markuplint/lib/rule';
+import { getRuleset } from 'markuplint/lib/ruleset';
 
 import {
-	IPCMessageReader,
-	IPCMessageWriter,
 	createConnection,
-	TextDocuments,
 	Diagnostic,
 	DiagnosticSeverity,
 	InitializeResult,
+	IPCMessageReader,
+	IPCMessageWriter,
+	TextDocuments,
 } from 'vscode-languageserver';
 
 const connection = createConnection(new IPCMessageReader(process), new IPCMessageWriter(process));
@@ -23,10 +25,10 @@ connection.onInitialize((params): InitializeResult => {
 		capabilities: {
 			textDocumentSync: documents.syncKind,
 			completionProvider: {
-				resolveProvider: true
-			}
-		}
-	}
+				resolveProvider: true,
+			},
+		},
+	};
 });
 
 documents.onDidChangeContent((change) => {
@@ -53,7 +55,7 @@ documents.onDidChangeContent((change) => {
 						end: { line: report.line - 1, character: report.col + report.raw.length - 1 }
 					},
 					message: report.message,
-					source: 'markuplint'
+					source: 'markuplint',
 				});
 			}
 			connection.sendDiagnostics({ uri: change.document.uri, diagnostics });
