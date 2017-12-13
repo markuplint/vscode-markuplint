@@ -2,13 +2,17 @@
     "name": "vscode-markuplint",
     "displayName": "markuplint",
     "description": "markuplint for VS Code",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "publisher": "YusukeHirao",
     "engines": {
         "vscode": "^1.18.0"
     },
     "categories": [
-        "Languages",
+        "HTML",
+        "SVG",
+        "Web Components",
+        "MathML",
+        "AMP",
         "Linters"
     ],
     "activationEvents": [
@@ -20,7 +24,7 @@
             "type": "object",
             "title": "markuplint configuration",
             "properties": {
-                "htmlhint.enable": {
+                "markuplint.enable": {
                     "type": "boolean",
                     "default": true,
                     "description": "Control whether markuplint is enabled for HTML files or not."
@@ -29,7 +33,7 @@
         },
         "jsonValidation": [
             {
-                "fileMatch": "**/.markuplintrc*",
+                "fileMatch": "**/{.markuplintrc,markuplintrc.json,markuplint.config.json,markuplint.json}",
                 "url": "https://raw.githubusercontent.com/YusukeHirao/markuplint/master/markuplint.schema.json"
             }
         ]
@@ -44,6 +48,7 @@
     "devDependencies": {
         "@types/mocha": "^2.2.42",
         "@types/node": "^7.0.43",
+        "tslint": "^5.8.0",
         "typescript": "^2.6.1",
         "vscode": "^1.1.6"
     },
