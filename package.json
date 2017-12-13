@@ -1,0 +1,62 @@
+{
+    "name": "vscode-markuplint",
+    "displayName": "markuplint",
+    "description": "markuplint for VS Code",
+    "version": "0.1.0",
+    "publisher": "yusukehirao",
+    "license": "MIT",
+    "repository": "git@github.com:YusukeHirao/vscode-markuplint.git",
+	"icon": "media/icon.png",
+	"galleryBanner": {
+		"color": "#0071BC",
+		"theme": "light"
+	},
+    "engines": {
+        "vscode": "^1.18.0"
+    },
+    "categories": [
+        "Languages",
+        "Linters"
+    ],
+    "activationEvents": [
+        "onLanguage:html"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "markuplint configuration",
+            "properties": {
+                "markuplint.enable": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Control whether markuplint is enabled for HTML files or not."
+                }
+            }
+        },
+        "jsonValidation": [
+            {
+                "fileMatch": "**/{.markuplintrc,markuplintrc.json,markuplint.config.json,markuplint.json}",
+                "url": "https://raw.githubusercontent.com/YusukeHirao/markuplint/master/markuplint.schema.json"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "@types/node": "^8.0.58",
+        "tslint": "^5.8.0",
+        "typescript": "^2.6.2",
+        "vscode": "^1.1.10"
+    },
+    "dependencies": {
+        "markuplint": "^0.6.1",
+        "util.promisify": "^1.0.0",
+        "vscode-languageclient": "^3.5.0",
+        "vscode-languageserver": "^3.5.0"
+    }
+}
