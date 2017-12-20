@@ -32,7 +32,6 @@ connection.onInitialize((params): InitializeResult => {
 });
 
 documents.onDidChangeContent((change) => {
-	connection.console.log(`change text`);
 	const diagnostics: Diagnostic[] = [];
 
 	const filePath = change.document.uri.replace(/^file:\//, '');
@@ -52,14 +51,16 @@ documents.onDidChangeContent((change) => {
 					severity: report.level === 'error' ? DiagnosticSeverity.Error : DiagnosticSeverity.Warning,
 					range: {
 						start: { line: report.line - 1, character: report.col - 1},
-						end: { line: report.line - 1, character: report.col + report.raw.length - 1 }
+						end: { line: report.line - 1, character: report.col + report.raw.length - 1 },
 					},
-					message: report.message,
+					message: `${report.message} (${report.ruleId})`,
 					source: 'markuplint',
 				});
 			}
 			connection.sendDiagnostics({ uri: change.document.uri, diagnostics });
 		});
+	}).catch((err) => {
+		console.log(err);
 	});
 });
 
