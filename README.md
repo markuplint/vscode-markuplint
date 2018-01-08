@@ -8,6 +8,10 @@
 
 ## Release Notes
 
+### 0.4.0
+
+- update module [markuplint](https://github.com/YusukeHirao/markuplint) [v0.12.0](https://github.com/YusukeHirao/markuplint/releases/tag/v0.12.0)
+
 ### 0.3.0
 
 - update module [markuplint](https://github.com/YusukeHirao/markuplint) [v0.11.0-beta.2](https://github.com/YusukeHirao/markuplint/releases/tag/v0.11.0-beta.2)
