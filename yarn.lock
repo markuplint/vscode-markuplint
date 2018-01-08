@@ -6,9 +6,9 @@
   version "8.0.58"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.58.tgz#5b3881c0be3a646874803fee3197ea7f1ed6df90"
 
-"@types/node@^8.5.2":
-  version "8.5.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.5.2.tgz#83b8103fa9a2c2e83d78f701a9aa7c9539739aa5"
+"@types/node@^8.5.7":
+  version "8.5.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.5.7.tgz#9c498c35af354dcfbca3790fb2e81129e93cf0e2"
 
 ajv@^5.1.0:
   version "5.5.1"
@@ -1409,9 +1409,9 @@ map-stream@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/map-stream/-/map-stream-0.1.0.tgz#e56aa94c4c8055a16404a0674b78f215f7c8e194"
 
-markuplint@0.11.0-beta.2:
-  version "0.11.0-beta.2"
-  resolved "https://registry.yarnpkg.com/markuplint/-/markuplint-0.11.0-beta.2.tgz#f979b4859d3fd8e40a587b9c34e338afb173f7d3"
+markuplint@0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/markuplint/-/markuplint-0.12.0.tgz#427875695f1c4005896b24b59cb20d2c4dc8763a"
   dependencies:
     cli-color "^1.2.0"
     cosmiconfig "^3.1.0"
@@ -1422,7 +1422,6 @@ markuplint@0.11.0-beta.2:
     os-locale "^2.1.0"
     parse5 "^3.0.3"
     strip-ansi "^4.0.0"
-    strip-json-comments "^2.0.1"
 
 mem@^1.1.0:
   version "1.1.0"
@@ -2121,10 +2120,6 @@ strip-eof@^1.0.0:
 strip-indent@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-2.0.0.tgz#5ef8db295d01e6ed6cbf7aab96998d7822527b68"
-
-strip-json-comments@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
 supports-color@4.4.0:
   version "4.4.0"
