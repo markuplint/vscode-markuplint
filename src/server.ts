@@ -2,7 +2,16 @@ require('util.promisify/shim')(); // tslint:disable-line
 
 import * as path from 'path';
 
-import * as markuplint from 'markuplint';
+// tslint:disable
+let markuplint;
+try {
+	markuplint = require(path.join(process.cwd(), `markuplint`));
+} catch (err) {
+	markuplint = require('markuplint');
+}
+// tslint:enable
+
+console.log(process.cwd());
 
 import {
 	createConnection,
