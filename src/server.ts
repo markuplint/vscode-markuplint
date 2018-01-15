@@ -5,13 +5,13 @@ import * as path from 'path';
 // tslint:disable
 let markuplint;
 try {
-	markuplint = require(path.join(process.cwd(), `markuplint`));
+	const modPath = path.join(process.cwd(), 'node_modules', 'markuplint');
+	markuplint = require(modPath);
 } catch (err) {
 	markuplint = require('markuplint');
+	console.warn(err.message);
 }
 // tslint:enable
-
-console.log(process.cwd());
 
 import {
 	createConnection,

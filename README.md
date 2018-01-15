@@ -8,6 +8,10 @@
 
 ## Release Notes
 
+### 0.5.1
+
+- bugfix: Fix importing module error.
+
 ### 0.5.0
 
 - change: Importing module [markuplint](https://github.com/YusukeHirao/markuplint) from node_modules on current working directory automatically
