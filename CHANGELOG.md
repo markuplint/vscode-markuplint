@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.6.0] - 2018-01-20
+
+- update: Default [markuplint](https://github.com/YusukeHirao/markuplint) version [v0.16.2](https://github.com/YusukeHirao/markuplint/releases/tag/v0.16.2)
+
 ## [0.5.1] - 2018-01-15
 
 - bugfix: Fix importing module error.
