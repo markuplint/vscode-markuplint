@@ -2,7 +2,7 @@
 	"name": "vscode-markuplint",
 	"displayName": "markuplint",
 	"description": "markuplint for VS Code",
-	"version": "0.5.2",
+	"version": "0.7.0",
 	"publisher": "yusukehirao",
 	"license": "MIT",
 	"repository": "git@github.com:YusukeHirao/vscode-markuplint.git",
@@ -19,7 +19,8 @@
 		"Linters"
 	],
 	"activationEvents": [
-		"onLanguage:html"
+		"onLanguage:html",
+		"onLanguage:vue"
 	],
 	"main": "./out/extension",
 	"contributes": {
@@ -50,11 +51,11 @@
 	"devDependencies": {
 		"@types/node": "7",
 		"tslint": "^5.9.1",
-		"typescript": "^2.6.2",
+		"typescript": "^2.7.2",
 		"vscode": "^1.1.10"
 	},
 	"dependencies": {
-		"markuplint": "0.16.2",
+		"markuplint": "0.21.0",
 		"util.promisify": "^1.0.0",
 		"vscode-languageclient": "^3.5.0",
 		"vscode-languageserver": "^3.5.0"

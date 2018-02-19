@@ -711,6 +711,10 @@ generate-object-property@^1.1.0:
   dependencies:
     is-property "^1.0.0"
 
+get-stdin@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-5.0.1.tgz#122e161591e21ff4c52530305693f20e6393a398"
+
 get-stream@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-3.0.0.tgz#8e943d1358dc37555054ecbe2edb05aa174ede14"
@@ -1403,15 +1407,16 @@ map-stream@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/map-stream/-/map-stream-0.1.0.tgz#e56aa94c4c8055a16404a0674b78f215f7c8e194"
 
-markuplint@0.16.2:
-  version "0.16.2"
-  resolved "https://registry.yarnpkg.com/markuplint/-/markuplint-0.16.2.tgz#38e1e6bf0eee91e9fc38a1bf36924cd626fa398c"
+markuplint@0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/markuplint/-/markuplint-0.21.0.tgz#aa955217fdb1204989574a1fef5b92d5c18b1a5d"
   dependencies:
     cli-color "^1.2.0"
     cosmiconfig "^4.0.0"
     css-what "^2.1.0"
     deep-assign "^2.0.0"
     find-node-modules "^1.0.4"
+    get-stdin "^5.0.1"
     meow "^4.0.0"
     os-locale "^2.1.0"
     parse5 "^4.0.0"
@@ -2217,9 +2222,9 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
-typescript@^2.6.2:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.6.2.tgz#3c5b6fd7f6de0914269027f03c0946758f7673a4"
+typescript@^2.7.2:
+  version "2.7.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.7.2.tgz#2d615a1ef4aee4f574425cdff7026edf81919836"
 
 unique-stream@^2.0.2:
   version "2.2.1"

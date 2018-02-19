@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.7.0] - 2018-02-20
+
+- change: Support for `.vue` file on Vue.js
+- update: Default [markuplint](https://github.com/YusukeHirao/markuplint) version [v0.21.0](https://github.com/YusukeHirao/markuplint/releases/tag/v0.21.0)
+
 ## [0.6.0] - 2018-01-20
 
 - update: Default [markuplint](https://github.com/YusukeHirao/markuplint) version [v0.16.2](https://github.com/YusukeHirao/markuplint/releases/tag/v0.16.2)
