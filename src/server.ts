@@ -52,7 +52,7 @@ documents.onDidChangeContent((change) => {
 	markuplint.verifyOnWorkspace(html, dir).then((reports) => {
 		for (const report of reports) {
 			diagnostics.push({
-				severity: report.level === 'error' ? DiagnosticSeverity.Error : DiagnosticSeverity.Warning,
+				severity: report.severity === 'error' ? DiagnosticSeverity.Error : DiagnosticSeverity.Warning,
 				range: {
 					start: { line: report.line - 1, character: report.col - 1},
 					end: { line: report.line - 1, character: report.col + report.raw.length - 1 },
