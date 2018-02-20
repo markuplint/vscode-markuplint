@@ -1,7 +1,19 @@
 import * as path from 'path';
 
-import { workspace, ExtensionContext } from 'vscode';
-import { LanguageClient, LanguageClientOptions, ServerOptions, TransportKind } from 'vscode-languageclient';
+import {
+	window,
+	workspace,
+	ExtensionContext,
+	StatusBarAlignment,
+} from 'vscode';
+
+import {
+	LanguageClient,
+	LanguageClientOptions,
+	ServerOptions,
+	TransportKind,
+} from 'vscode-languageclient';
+
 import {
 	error,
 	info,
@@ -29,6 +41,31 @@ export function activate (context: ExtensionContext) {
 		},
 	};
 
-	const disposable = new LanguageClient('markuplint', 'markuplint server', serverOptions, clientOptions).start();
+	const client = new LanguageClient('markuplint', 'markuplint server', serverOptions, clientOptions);
+	const disposable = client.start();
 	context.subscriptions.push(disposable);
+
+	client.onReady().then(() => {
+
+		const statusBar = window.createStatusBarItem(StatusBarAlignment.Right, 0);
+
+		client.onRequest(ready, (data) => {
+			statusBar.show();
+			statusBar.text = `$(check)markuplint[v${data.version}]`;
+		});
+
+		client.onNotification(error, (message) => {
+			window.showErrorMessage(message);
+		});
+
+		client.onNotification(warning, (message) => {
+			window.showWarningMessage(message);
+		});
+
+		client.onNotification(info, (message) => {
+			window.showInformationMessage(message);
+		});
+
+	});
+
 }

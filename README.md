@@ -8,6 +8,11 @@
 
 ## Release Notes
 
+## 0.8.0
+
+- change: Notify message when markuplint could not be found in the node_modules of the workspace.
+- change: Show version of markuplint to status bar.
+
 ## 0.7.0
 
 - change: Support for `.vue` file on Vue.js
