@@ -2,6 +2,12 @@ import * as path from 'path';
 
 import { workspace, ExtensionContext } from 'vscode';
 import { LanguageClient, LanguageClientOptions, ServerOptions, TransportKind } from 'vscode-languageclient';
+import {
+	error,
+	info,
+	ready,
+	warning,
+} from './types';
 
 export function activate (context: ExtensionContext) {
 	const serverModule = context.asAbsolutePath(path.join('out', 'server.js'));

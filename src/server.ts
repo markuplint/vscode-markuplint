@@ -23,6 +23,13 @@ import {
 	TextDocuments,
 } from 'vscode-languageserver';
 
+import {
+	error,
+	info,
+	ready,
+	warning,
+} from './types';
+
 const connection = createConnection(new IPCMessageReader(process), new IPCMessageWriter(process));
 const documents = new TextDocuments();
 documents.listen(connection);
