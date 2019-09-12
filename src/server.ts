@@ -20,8 +20,7 @@ let markuplint;
 let version: string;
 let onLocalNodeModule = true;
 try {
-	// const modPath = path.join(process.cwd(), 'node_modules', 'markuplint');
-	const modPath = path.join('../../markuplint/packages/markuplint');
+	const modPath = path.join(process.cwd(), 'node_modules', 'markuplint');
 	markuplint = require(modPath);
 	version = require(`${modPath}/package.json`).version;
 } catch (err) {

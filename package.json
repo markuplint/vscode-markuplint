@@ -43,8 +43,8 @@
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
+		"vscode:prepublish": "npm run build",
+		"build": "tsc -p ./",
 		"dev": "tsc -watch -p ./"
 	},
 	"prettier": {
