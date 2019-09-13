@@ -74,10 +74,10 @@
   resolved "https://registry.yarnpkg.com/@markuplint/ml-spec/-/ml-spec-1.0.0-alpha.3.tgz#c8146268f2fe5365f09ba05988d10203daa43290"
   integrity sha512-3qYmBLgYVT/ASxugSoxz85Na4nUDWYlTAdjibUKYc3KIFXOvuU/34+I91NDV6SpWesthkMSp5I7l3eRZx8TqhA==
 
-"@markuplint/rules@^1.0.0-alpha.7":
-  version "1.0.0-alpha.7"
-  resolved "https://registry.yarnpkg.com/@markuplint/rules/-/rules-1.0.0-alpha.7.tgz#9f7e6eb1c0439517eb39dd06269708c75253df48"
-  integrity sha512-F/cE+VV/L/7ET71nFu+jgqqAgGejXdxKpvTTd7l430KeyxNlLuX1uabh/wucxKVW1tNry91UBJL9CeqrXYgEfw==
+"@markuplint/rules@^1.0.0-alpha.8":
+  version "1.0.0-alpha.8"
+  resolved "https://registry.yarnpkg.com/@markuplint/rules/-/rules-1.0.0-alpha.8.tgz#0e5be656a2a7a0dead57f62edc15bc13612300ae"
+  integrity sha512-+BzayxjJoyVkmNs4a0ue9RXK4Xb3y7gae7c3g1sKdaxNDdh4FGw+83HxoZhAtHp0DFgRs2Zmd7oL2DNvwTfC/Q==
   dependencies:
     "@markuplint/ml-spec" "^1.0.0-alpha.3"
 
@@ -905,10 +905,10 @@ map-obj@^2.0.0:
   resolved "https://registry.yarnpkg.com/map-obj/-/map-obj-2.0.0.tgz#a65cd29087a92598b8791257a523e021222ac1f9"
   integrity sha1-plzSkIepJZi4eRJXpSPgISIqwfk=
 
-markuplint@1.0.0-alpha.13:
-  version "1.0.0-alpha.13"
-  resolved "https://registry.yarnpkg.com/markuplint/-/markuplint-1.0.0-alpha.13.tgz#9f4f38128d9291296a97ed014174792b92177223"
-  integrity sha512-Gy31TAm/Bh8wW5300xuxj2zLJiuFpePzE3b12VHDLcFomKS1vuIKmwy6rWg0IGo11puKZ+WHnpfy7NZ7MtpkVQ==
+markuplint@1.0.0-alpha.14:
+  version "1.0.0-alpha.14"
+  resolved "https://registry.yarnpkg.com/markuplint/-/markuplint-1.0.0-alpha.14.tgz#e4d31ad182d6037ad9852725d578a73961a40fc0"
+  integrity sha512-B6jvA1Ws0cY8UXznmIE6qI5RkxV5Qa6PaDVkhMzpymxIQu//FyUkrgs/8Rm+2z826yAtHJXBmWaaY62Hz/gdkg==
   dependencies:
     "@markuplint/file-resolver" "^1.0.0-alpha.8"
     "@markuplint/html-ls" "^1.0.0-alpha.6"
@@ -918,7 +918,7 @@ markuplint@1.0.0-alpha.13:
     "@markuplint/ml-config" "^1.0.0-alpha.5"
     "@markuplint/ml-core" "^1.0.0-alpha.7"
     "@markuplint/ml-spec" "^1.0.0-alpha.3"
-    "@markuplint/rules" "^1.0.0-alpha.7"
+    "@markuplint/rules" "^1.0.0-alpha.8"
     cli-color "^1.4.0"
     eastasianwidth "^0.2.0"
     get-stdin "^7.0.0"
