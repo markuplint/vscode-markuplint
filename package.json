@@ -6,7 +6,7 @@
 	"publisher": "yusukehirao",
 	"license": "MIT",
 	"repository": "git@github.com:YusukeHirao/vscode-markuplint.git",
-	"icon": "https://github.com/markuplint/vscode-markuplint/blob/master/media/icon.png",
+	"icon": "media/icon.png",
 	"galleryBanner": {
 		"color": "#0071BC",
 		"theme": "dark"
