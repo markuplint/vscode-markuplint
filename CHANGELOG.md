@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-## [1.0.0-alpha] - 2019-09-12
+## [1.0.0] - 2019-09-13
 
 -   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha
 
