@@ -8,6 +8,11 @@
 
 ## Release Notes
 
+## 1.1.0
+
+-   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.19
+-   change: Support for `.vue` file and `@markuplint/vue-parser`
+
 ## 1.0.0
 
 -   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha
