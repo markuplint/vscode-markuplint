@@ -27,7 +27,7 @@ export function activate(context: ExtensionContext) {
 	};
 
 	const clientOptions: LanguageClientOptions = {
-		documentSelector: [{ scheme: 'file', language: 'html' }, { scheme: 'file', language: 'vue' }],
+		documentSelector: [{ language: 'html' }, { language: 'vue' }],
 		synchronize: {
 			configurationSection: 'markuplint',
 			fileEvents: workspace.createFileSystemWatcher(
