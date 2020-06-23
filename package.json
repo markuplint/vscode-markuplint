@@ -20,7 +20,9 @@
 	],
 	"activationEvents": [
 		"onLanguage:html",
-		"onLanguage:vue"
+		"onLanguage:vue",
+		"onLanguage:pug",
+		"onLanguage:jade"
 	],
 	"main": "./out/extension",
 	"contributes": {

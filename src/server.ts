@@ -88,7 +88,7 @@ function getFilePath(uri: string, langId: string) {
 	};
 }
 
-documents.onDidChangeContent(async change => {
+documents.onDidChangeContent(async (change) => {
 	const diagnostics: Diagnostic[] = [];
 
 	const file = getFilePath(change.document.uri, change.document.languageId);
@@ -103,6 +103,8 @@ documents.onDidChangeContent(async change => {
 	});
 
 	const reports = totalResults[0] ? totalResults[0].results : [];
+
+	console.log(`Linting: "${file.basename}" on "${file.dirname}"\n\tResult: ${reports.length} reports.`);
 
 	for (const report of reports) {
 		diagnostics.push({
