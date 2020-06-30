@@ -1,18 +1,19 @@
 {
 	"compilerOptions": {
 		"module": "commonjs",
-		"target": "es6",
-		"outDir": "out",
-		"lib": ["es6"],
-		"sourceMap": true,
-		"rootDir": "src",
+		"target": "es2017",
+		"strict": true,
 		"strictNullChecks": true,
 		"strictPropertyInitialization": true,
 		"allowSyntheticDefaultImports": true,
 		"experimentalDecorators": true,
 		"esModuleInterop": true,
 		"noImplicitAny": true,
-		"declaration": true
+		"declaration": true,
+		"lib": ["dom", "es2015", "es2016", "es2017", "esnext"],
+		"skipLibCheck": true,
+		"outDir": "out"
 	},
+	"include": ["src"],
 	"exclude": ["node_modules", ".vscode-test", "out"]
 }
