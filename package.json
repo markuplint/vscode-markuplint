@@ -21,8 +21,8 @@
 	"activationEvents": [
 		"onLanguage:html",
 		"onLanguage:vue",
-		"onLanguage:pug",
-		"onLanguage:jade"
+		"onLanguage:jade",
+		"onLanguage:handlebars"
 	],
 	"main": "./out/extension",
 	"contributes": {
