@@ -27,7 +27,7 @@ export function activate(context: ExtensionContext) {
 	};
 
 	const clientOptions: LanguageClientOptions = {
-		documentSelector: [{ language: 'html' }, { language: 'vue' }],
+		documentSelector: [{ language: 'html' }, { language: 'vue' }, { language: 'jade' }, { language: 'handlebars' }],
 		synchronize: {
 			configurationSection: 'markuplint',
 			fileEvents: workspace.createFileSystemWatcher(
@@ -42,20 +42,20 @@ export function activate(context: ExtensionContext) {
 	client.onReady().then(() => {
 		const statusBar = window.createStatusBarItem(StatusBarAlignment.Right, 0);
 
-		client.onRequest(ready, data => {
+		client.onRequest(ready, (data) => {
 			statusBar.show();
 			statusBar.text = `$(check)markuplint[v${data.version}]`;
 		});
 
-		client.onNotification(error, message => {
+		client.onNotification(error, (message) => {
 			window.showErrorMessage(message);
 		});
 
-		client.onNotification(warning, message => {
+		client.onNotification(warning, (message) => {
 			window.showWarningMessage(message);
 		});
 
-		client.onNotification(info, message => {
+		client.onNotification(info, (message) => {
 			window.showInformationMessage(message);
 		});
 	});

@@ -1,4 +1,5 @@
 import path from 'path';
+import type { exec } from 'markuplint';
 
 console.log('Started: markuplint language server');
 
@@ -15,8 +16,7 @@ import {
 import { error, info, ready, warning } from './types';
 
 // tslint:disable
-// @ts-ignore
-let markuplint;
+let markuplint: { exec: typeof exec };
 let version: string;
 let onLocalNodeModule = true;
 try {
@@ -88,23 +88,27 @@ function getFilePath(uri: string, langId: string) {
 	};
 }
 
-documents.onDidChangeContent(async change => {
+documents.onDidChangeContent(async (change) => {
 	const diagnostics: Diagnostic[] = [];
 
 	const file = getFilePath(change.document.uri, change.document.languageId);
 
 	const html = change.document.getText();
 
-	// @ts-ignore
 	const totalResults = await markuplint.exec({
 		sourceCodes: html,
 		names: file.basename,
 		workspace: file.dirname,
 	});
 
-	const reports = totalResults[0] ? totalResults[0].results : [];
+	const result =  totalResults[0];
+	if (!result) {
+		return;
+	}
 
-	for (const report of reports) {
+	console.log(`Linting: "${file.basename}" on "${file.dirname}"\n\tConfig: [${result.configSet.files.map(file => `\n\t\t${file}`)}\n\t]\n\tParser: ${result.parser}\n\tResult: ${result.results.length} reports.`);
+
+	for (const report of result.results) {
 		diagnostics.push({
 			severity: report.severity === 'error' ? DiagnosticSeverity.Error : DiagnosticSeverity.Warning,
 			range: {
