@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [1.2.0] - 2020-06-30
+
+-   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.45
+-   change: Support for `.pug` file and `@markuplint/pug-parser`
+
 ## [1.1.0] - 2019-10-15
 
 -   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.19
