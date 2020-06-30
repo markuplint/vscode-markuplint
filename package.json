@@ -60,15 +60,14 @@
 	"devDependencies": {
 		"@types/node": "12.7.12",
 		"@types/vscode": "^1.39.0",
-		"eslint": "^6.5.1",
-		"eslint-config-prettier": "^6.4.0",
-		"eslint-plugin-prettier": "^3.1.1",
-		"prettier": "^1.18.2",
-		"tslint": "^5.20.0",
+		"@typescript-eslint/eslint-plugin": "^3.5.0",
+		"@typescript-eslint/parser": "^3.5.0",
+		"eslint": "^7.3.1",
+		"prettier": "^2.0.5",
 		"typescript": "^3.6.4"
 	},
 	"dependencies": {
-		"markuplint": "1.0.0-alpha.19",
+		"markuplint": "1.0.0-alpha.34",
 		"vscode-languageclient": "^5.2.1",
 		"vscode-languageserver": "^5.2.1"
 	}
