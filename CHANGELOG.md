@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [1.3.0] - 2020-07-26
+
+-   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.53
+-   change: Added languages to support
+
 ## [1.2.0] - 2020-06-30
 
 -   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.45

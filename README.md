@@ -8,6 +8,16 @@
 
 ## Release Notes
 
+## 1.3.0
+
+-   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.53
+-   change: Added languages to support
+
+## 1.2.0
+
+-   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.45
+-   change: Support for `.pug` file and `@markuplint/pug-parser`
+
 ## 1.1.0
 
 -   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.19
