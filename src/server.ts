@@ -113,12 +113,12 @@ documents.onDidChangeContent(async (change) => {
 			severity: report.severity === 'error' ? DiagnosticSeverity.Error : DiagnosticSeverity.Warning,
 			range: {
 				start: {
-					line: report.line - 1,
-					character: report.col - 1,
+					line: Math.max(report.line - 1, 0),
+					character: Math.max(report.col - 1, 0),
 				},
 				end: {
-					line: report.line - 1,
-					character: report.col + report.raw.length - 1,
+					line: Math.max(report.line - 1, 0),
+					character: Math.max(report.col + report.raw.length - 1, 0),
 				},
 			},
 			message: `${report.message} (${report.ruleId})`,
