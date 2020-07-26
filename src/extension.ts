@@ -27,7 +27,18 @@ export function activate(context: ExtensionContext) {
 	};
 
 	const clientOptions: LanguageClientOptions = {
-		documentSelector: [{ language: 'html' }, { language: 'vue' }, { language: 'jade' }, { language: 'handlebars' }],
+		documentSelector: [
+			{ language: 'html' },
+			{ language: 'vue' },
+			{ language: 'jade' },
+			{ language: 'svelte' },
+			{ language: 'njk' },
+			{ language: 'handlebars' },
+			{ language: 'mustache' },
+			{ language: 'ejs' },
+			{ language: 'haml' },
+			{ language: 'jstl' },
+		],
 		synchronize: {
 			configurationSection: 'markuplint',
 			fileEvents: workspace.createFileSystemWatcher(

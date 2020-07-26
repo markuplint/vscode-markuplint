@@ -22,7 +22,13 @@
 		"onLanguage:html",
 		"onLanguage:vue",
 		"onLanguage:jade",
-		"onLanguage:handlebars"
+		"onLanguage:svelte",
+		"onLanguage:njk",
+		"onLanguage:handlebars",
+		"onLanguage:mustache",
+		"onLanguage:ejs",
+		"onLanguage:haml",
+		"onLanguage:jstl"
 	],
 	"main": "./out/extension",
 	"contributes": {
