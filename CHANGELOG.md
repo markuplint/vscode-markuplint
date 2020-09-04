@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## 1.6.0
+
+-   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.57
+-   change: Added default configuration
+
 ## [1.3.0] - 2020-07-26
 
 -   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.53
