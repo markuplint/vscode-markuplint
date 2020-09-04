@@ -11,7 +11,9 @@ import {
 	IPCMessageReader,
 	IPCMessageWriter,
 	TextDocuments,
+	TextDocumentSyncKind,
 } from 'vscode-languageserver';
+import { TextDocument } from 'vscode-languageserver-textdocument';
 
 import { error, info, ready, warning } from './types';
 
@@ -31,14 +33,13 @@ try {
 // tslint:enable
 
 const connection = createConnection(new IPCMessageReader(process), new IPCMessageWriter(process));
-const documents = new TextDocuments();
+const documents = new TextDocuments(TextDocument);
 documents.listen(connection);
-
 connection.onInitialize(
 	(params): InitializeResult => {
 		return {
 			capabilities: {
-				textDocumentSync: documents.syncKind,
+				textDocumentSync: TextDocumentSyncKind.Incremental,
 			},
 		};
 	},
@@ -106,7 +107,11 @@ documents.onDidChangeContent(async (change) => {
 		return;
 	}
 
-	console.log(`Linting: "${file.basename}" on "${file.dirname}"\n\tConfig: [${result.configSet.files.map(file => `\n\t\t${file}`)}\n\t]\n\tParser: ${result.parser}\n\tResult: ${result.results.length} reports.`);
+	console.log(
+		`Linting: "${file.basename}" on "${file.dirname}"\n\tConfig: [${result.configSet.files.map(
+			(file) => `\n\t\t${file}`,
+		)}\n\t]\n\tParser: ${result.parser}\n\tResult: ${result.results.length} reports.`,
+	);
 
 	for (const report of result.results) {
 		diagnostics.push({
