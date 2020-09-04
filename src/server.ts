@@ -100,9 +100,26 @@ documents.onDidChangeContent(async (change) => {
 		sourceCodes: html,
 		names: file.basename,
 		workspace: file.dirname,
+		// @ts-ignore
+		defaultConfig: {
+			rules: {
+				'attr-duplication': true,
+				'deprecated-attr': true,
+				'deprecated-element': true,
+				doctype: true,
+				'id-duplication': true,
+				'permitted-contents': true,
+				'required-attr': true,
+				'invalid-attr': true,
+				'landmark-roles': true,
+				'required-h1': true,
+				'case-sensitive-attr-name': true,
+				'case-sensitive-tag-name': true,
+			},
+		},
 	});
 
-	const result =  totalResults[0];
+	const result = totalResults[0];
 	if (!result) {
 		return;
 	}
