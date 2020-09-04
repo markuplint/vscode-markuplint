@@ -3,6 +3,11 @@
 out/test/**
 out/**/*.map
 src/**
+.editorconfig
+.eslintignore
+.eslintrc
 .gitignore
+.prettierrc
 tsconfig.json
 vsc-extension-quickstart.md
+yarn.lock
