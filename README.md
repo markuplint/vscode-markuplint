@@ -8,6 +8,10 @@
 
 ## Release Notes
 
+## 1.7.0
+
+-   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0
+
 ## 1.6.0
 
 -   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.57
