@@ -26,18 +26,26 @@ export function activate(context: ExtensionContext) {
 		},
 	};
 
+	const languages = [
+		'html',
+		'vue',
+		'jade',
+		'svelte',
+		'nunjucks',
+		'liquid',
+		'handlebars',
+		'mustache',
+		'ejs',
+		'haml',
+		'jstl',
+		'php',
+		'ruby',
+	];
+
 	const clientOptions: LanguageClientOptions = {
 		documentSelector: [
-			{ language: 'html' },
-			{ language: 'vue' },
-			{ language: 'jade' },
-			{ language: 'svelte' },
-			{ language: 'njk' },
-			{ language: 'handlebars' },
-			{ language: 'mustache' },
-			{ language: 'ejs' },
-			{ language: 'haml' },
-			{ language: 'jstl' },
+			...languages.map((language) => ({ language, scheme: 'file' })),
+			...languages.map((language) => ({ language, scheme: 'untitled' })),
 		],
 		synchronize: {
 			configurationSection: 'markuplint',

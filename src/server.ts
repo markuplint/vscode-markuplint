@@ -17,7 +17,6 @@ import { TextDocument } from 'vscode-languageserver-textdocument';
 
 import { error, info, ready, warning } from './types';
 
-// tslint:disable
 let markuplint: { exec: typeof exec };
 let version: string;
 let onLocalNodeModule = true;
@@ -30,7 +29,6 @@ try {
 	version = require('markuplint/package.json').version;
 	onLocalNodeModule = false;
 }
-// tslint:enable
 
 const connection = createConnection(new IPCMessageReader(process), new IPCMessageWriter(process));
 const documents = new TextDocuments(TextDocument);
@@ -89,6 +87,14 @@ function getFilePath(uri: string, langId: string) {
 	};
 }
 
+documents.onDidOpen((e) => {
+	console.log(e);
+});
+
+documents.onWillSave((e) => {
+	console.log(e);
+});
+
 documents.onDidChangeContent(async (change) => {
 	const diagnostics: Diagnostic[] = [];
 
@@ -115,6 +121,7 @@ documents.onDidChangeContent(async (change) => {
 				'required-h1': true,
 				'case-sensitive-attr-name': true,
 				'case-sensitive-tag-name': true,
+				'wai-aria': true,
 			},
 		},
 	});
