@@ -67,13 +67,13 @@
 		"bracketSpacing": true
 	},
 	"devDependencies": {
-		"@types/node": "12.7.12",
-		"@types/vscode": "^1.49.0",
-		"@typescript-eslint/eslint-plugin": "^4.3.0",
-		"@typescript-eslint/parser": "^4.3.0",
-		"eslint": "^7.10.0",
-		"prettier": "^2.1.2",
-		"typescript": "^4.0.3"
+		"@types/node": "12",
+		"@types/vscode": "^1.55.0",
+		"@typescript-eslint/eslint-plugin": "^4.22.0",
+		"@typescript-eslint/parser": "^4.22.0",
+		"eslint": "^7.25.0",
+		"prettier": "^2.2.1",
+		"typescript": "^4.2.4"
 	},
 	"dependencies": {
 		"markuplint": "1",
