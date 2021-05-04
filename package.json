@@ -31,7 +31,11 @@
 		"onLanguage:haml",
 		"onLanguage:jstl",
 		"onLanguage:php",
-		"onLanguage:ruby"
+		"onLanguage:ruby",
+		"onLanguage:javascript",
+		"onLanguage:javascriptreact",
+		"onLanguage:typescript",
+		"onLanguage:typescriptreact"
 	],
 	"main": "./out/extension",
 	"contributes": {

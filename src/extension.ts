@@ -40,6 +40,10 @@ export function activate(context: ExtensionContext) {
 		'jstl',
 		'php',
 		'ruby',
+		'javascript',
+		'javascriptreact',
+		'typescript',
+		'typescriptreact',
 	];
 
 	const clientOptions: LanguageClientOptions = {
