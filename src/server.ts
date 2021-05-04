@@ -132,9 +132,13 @@ documents.onDidChangeContent(async (change) => {
 	}
 
 	console.log(
-		`Linting: "${file.basename}" on "${file.dirname}"\n\tConfig: [${result.configSet.files.map(
-			(file) => `\n\t\t${file}`,
-		)}\n\t]\n\tParser: ${result.parser}\n\tResult: ${result.results.length} reports.`,
+		[
+			`Linting: "${change.document.uri}"`,
+			`\tLangId: ${change.document.languageId}`,
+			`\tConfig: [${result.configSet.files.map((file) => `\n\t\t${file}`)}\n\t]`,
+			`\tParser: ${result.parser}`,
+			`\tResult: ${result.results.length} reports.`,
+		].join('\n'),
 	);
 
 	for (const report of result.results) {
