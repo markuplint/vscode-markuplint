@@ -106,6 +106,8 @@ documents.onDidChangeContent(async (change) => {
 		sourceCodes: html,
 		names: file.basename,
 		workspace: file.dirname,
+		// @ts-ignore Add option since markuplint v1.7.0 @see https://github.com/markuplint/markuplint/pull/167
+		extMatch: true,
 		// @ts-ignore
 		defaultConfig: {
 			rules: {
@@ -128,6 +130,17 @@ documents.onDidChangeContent(async (change) => {
 
 	const result = totalResults[0];
 	if (!result) {
+		return;
+	}
+
+	/**
+	 * The process for until version 1.6.x.
+	 * @see https://github.com/markuplint/markuplint/pull/167
+	 *
+	 * @deprecated
+	 */
+	if (result.parser === '@markuplint/html-parser' && !/\.html?/i.test(file.basename)) {
+		console.log(`Skipped: "${change.document.uri}"`);
 		return;
 	}
 
