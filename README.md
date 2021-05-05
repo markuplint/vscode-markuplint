@@ -8,44 +8,48 @@
 
 ## Release Notes
 
-## 1.8.0
+### 1.9.0
+
+-   update: Supported JSX Parser and JavaScript/TypeScript file.
+
+### 1.8.0
 
 -   update: Supported some new languages/templates.
 
-## 1.7.0
+### 1.7.0
 
 -   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0
 
-## 1.6.0
+### 1.6.0
 
 -   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.57
 -   change: Added default configuration
 
-## 1.3.0
+### 1.3.0
 
 -   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.53
 -   change: Added languages to support
 
-## 1.2.0
+### 1.2.0
 
 -   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.45
 -   change: Support for `.pug` file and `@markuplint/pug-parser`
 
-## 1.1.0
+### 1.1.0
 
 -   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha.19
 -   change: Support for `.vue` file and `@markuplint/vue-parser`
 
-## 1.0.0
+### 1.0.0
 
 -   update: Default [markuplint](https://github.com/markuplint/markuplint) version v1.0.0-alpha
 
-## 0.8.0
+### 0.8.0
 
 -   change: Notify message when markuplint could not be found in the node_modules of the workspace.
 -   change: Show version of markuplint to status bar.
 
-## 0.7.0
+### 0.7.0
 
 -   change: Support for `.vue` file on Vue.js
 -   update: Default [markuplint](https://github.com/YusukeHirao/markuplint) version [v0.21.0](https://github.com/YusukeHirao/markuplint/releases/tag/v0.21.0)
