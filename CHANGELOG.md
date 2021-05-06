@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## 1.9.1
+
+-   Fix: The repository path.
+
 ## 1.9.0
 
 -   update: Supported JSX Parser and JavaScript/TypeScript file.
