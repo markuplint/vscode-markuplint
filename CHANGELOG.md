@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## 1.9.2
+
+-   Fix: The schema path.
+
 ## 1.9.1
 
 -   Fix: The repository path.
