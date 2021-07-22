@@ -2,7 +2,7 @@ import path from 'path';
 
 import { window, workspace, ExtensionContext, StatusBarAlignment } from 'vscode';
 
-import { LanguageClient, LanguageClientOptions, ServerOptions, TransportKind } from 'vscode-languageclient';
+import { LanguageClientOptions, LanguageClient, ServerOptions, TransportKind } from 'vscode-languageclient/node';
 
 import { error, info, ready, warning } from './types';
 

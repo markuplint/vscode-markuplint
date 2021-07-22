@@ -12,7 +12,7 @@ import {
 	IPCMessageWriter,
 	TextDocuments,
 	TextDocumentSyncKind,
-} from 'vscode-languageserver';
+} from 'vscode-languageserver/node';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 
 import { error, info, ready, warning } from './types';
@@ -33,15 +33,13 @@ try {
 const connection = createConnection(new IPCMessageReader(process), new IPCMessageWriter(process));
 const documents = new TextDocuments(TextDocument);
 documents.listen(connection);
-connection.onInitialize(
-	(params): InitializeResult => {
-		return {
-			capabilities: {
-				textDocumentSync: TextDocumentSyncKind.Incremental,
-			},
-		};
-	},
-);
+connection.onInitialize((params): InitializeResult => {
+	return {
+		capabilities: {
+			textDocumentSync: TextDocumentSyncKind.Incremental,
+		},
+	};
+});
 
 connection.onInitialized(() => {
 	connection.sendRequest(ready, { version });
