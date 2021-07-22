@@ -2,7 +2,7 @@
 	"name": "vscode-markuplint",
 	"displayName": "markuplint",
 	"description": "markuplint for VS Code",
-	"version": "1.9.2",
+	"version": "1.10.0",
 	"publisher": "yusukehirao",
 	"license": "MIT",
 	"repository": "https://github.com/markuplint/vscode-markuplint.git",
