@@ -23,6 +23,7 @@
 		"onLanguage:vue",
 		"onLanguage:jade",
 		"onLanguage:svelte",
+		"onLanguage:astro",
 		"onLanguage:nunjucks",
 		"onLanguage:liquid",
 		"onLanguage:handlebars",

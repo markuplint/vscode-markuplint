@@ -31,6 +31,7 @@ export function activate(context: ExtensionContext) {
 		'vue',
 		'jade',
 		'svelte',
+		'astro',
 		'nunjucks',
 		'liquid',
 		'handlebars',
