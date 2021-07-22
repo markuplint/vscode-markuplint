@@ -8,6 +8,11 @@
 
 ## Release Notes
 
+### 1.10.0
+
+-   change: Support for `.astro` file and `@markuplint/astro-parser`
+-   update: dependencies
+
 ### 1.9.2
 
 -   Fix: The schema path.
