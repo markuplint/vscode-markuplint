@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## 1.10.1
+
+-   Fix: The schema path.
+
 ## 1.10.0
 
 -   change: Support for `.astro` file and `@markuplint/astro-parser`
