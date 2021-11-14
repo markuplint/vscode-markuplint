@@ -1,15 +1,13 @@
 import path from 'path';
-
-import { window, workspace, ExtensionContext, StatusBarAlignment } from 'vscode';
-
+import { window, workspace, ExtensionContext, StatusBarAlignment, commands } from 'vscode';
 import { LanguageClientOptions, LanguageClient, ServerOptions, TransportKind } from 'vscode-languageclient/node';
-
 import { error, info, ready, warning } from './types';
 
 let client: LanguageClient;
 
 export function activate(context: ExtensionContext) {
-	const serverModule = context.asAbsolutePath(path.join('out', 'server.js'));
+	const serverModule = context.asAbsolutePath(path.join('out', 'server', 'index.js'));
+
 	const debugOptions = {
 		execArgv: ['--nolazy', '--inspect=6009'],
 	};
@@ -60,7 +58,7 @@ export function activate(context: ExtensionContext) {
 		},
 	};
 
-	client = new LanguageClient('markuplint', 'markuplint Server', serverOptions, clientOptions);
+	client = new LanguageClient('markuplint', 'markuplint', serverOptions, clientOptions);
 	client.start();
 
 	client.onReady().then(() => {
@@ -69,6 +67,7 @@ export function activate(context: ExtensionContext) {
 		client.onRequest(ready, (data) => {
 			statusBar.show();
 			statusBar.text = `$(check)markuplint[v${data.version}]`;
+			statusBar.command = 'markuplint.openLog';
 		});
 
 		client.onNotification(error, (message) => {
@@ -83,6 +82,11 @@ export function activate(context: ExtensionContext) {
 			window.showInformationMessage(message);
 		});
 	});
+
+	const openLogCommand = commands.registerCommand('markuplint.openLog', () => {
+		client.outputChannel.show();
+	});
+	context.subscriptions.push(openLogCommand);
 }
 
 export function deactivate() {

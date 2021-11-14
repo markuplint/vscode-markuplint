@@ -61,7 +61,7 @@
 	"scripts": {
 		"vscode:prepublish": "npm run build",
 		"build": "tsc -p ./",
-		"dev": "tsc -watch -p ./"
+		"watch": "tsc -watch -p ./"
 	},
 	"prettier": {
 		"printWidth": 120,
@@ -73,17 +73,20 @@
 	},
 	"devDependencies": {
 		"@types/node": "12",
-		"@types/vscode": "^1.49.0",
-		"@typescript-eslint/eslint-plugin": "^4.28.4",
-		"@typescript-eslint/parser": "^4.28.4",
-		"eslint": "^7.31.0",
-		"prettier": "^2.3.2",
-		"typescript": "^4.3.5"
+		"@types/semver": "^7.3.9",
+		"@types/vscode": "^1.62.0",
+		"@typescript-eslint/eslint-plugin": "^5.3.1",
+		"@typescript-eslint/parser": "^5.3.1",
+		"eslint": "^8.2.0",
+		"markuplint": "^2.0.0-alpha.0.23",
+		"prettier": "^2.4.1",
+		"typescript": "^4.4.4"
 	},
 	"dependencies": {
-		"markuplint": "1",
+		"markuplint-v1": "npm:markuplint@1",
+		"semver": "^7.3.5",
 		"vscode-languageclient": "^7.0.0",
 		"vscode-languageserver": "^7.0.0",
-		"vscode-languageserver-textdocument": "^1.0.1"
+		"vscode-languageserver-textdocument": "^1.0.2"
 	}
 }
