@@ -8,6 +8,10 @@
 
 ## Release Notes
 
+### 2.0.0
+
+-   Change: Support for markuplint v2.x.
+
 ### 1.10.1
 
 -   Fix: The schema path.
