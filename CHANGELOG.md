@@ -2,9 +2,9 @@
 
 ## [Unreleased]
 
-## 2.0.1
+## 2.0.2
 
--   Change: Support for markuplint v2.x.
+-   Change: Improve to debounce the execution.
 
 ## 2.0.0
 

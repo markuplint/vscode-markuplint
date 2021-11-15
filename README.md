@@ -8,7 +8,7 @@
 
 ## Release Notes
 
-### 2.0.1
+### 2.0.2
 
 -   Change: Improve to debounce the execution.
 
