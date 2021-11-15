@@ -8,6 +8,10 @@
 
 ## Release Notes
 
+### 2.0.1
+
+-   Change: Improve to debounce the execution.
+
 ### 2.0.0
 
 -   Change: Support for markuplint v2.x.

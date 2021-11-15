@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## 2.0.1
+
+-   Change: Support for markuplint v2.x.
+
 ## 2.0.0
 
 -   Change: Support for markuplint v2.x.
