@@ -100,20 +100,26 @@ export function server(MLEngine: typeof MLEngineInstance, version: string, onLoc
 		engine.exec();
 	});
 
+	let debounceTimer: NodeJS.Timer;
 	documents.onDidChangeContent(async (change) => {
+		clearTimeout(debounceTimer);
+
 		const key = change.document.uri;
 		console.log(`Changed: ${key}`);
 
 		const engine = engines.get(key);
 		console.log({ engine });
-		if (!engine) {
-			return;
-		}
 
-		const code = change.document.getText();
-		await engine.setCode(code);
-		console.log('Call: exec from onDidChangeContent');
-		engine.exec();
+		debounceTimer = setTimeout(async () => {
+			if (!engine) {
+				return;
+			}
+
+			const code = change.document.getText();
+			await engine.setCode(code);
+			console.log('Call: exec from onDidChangeContent');
+			engine.exec();
+		}, 300);
 	});
 
 	connection.listen();
