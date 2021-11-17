@@ -8,6 +8,12 @@
 
 ## Release Notes
 
+### 2.0.3
+
+-   Change: Output the `reason`.
+-   Change: Supports the `info` severity.
+-   Change: Improve debug logs.
+
 ### 2.0.2
 
 -   Change: Improve to debounce the execution.
