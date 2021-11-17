@@ -20,7 +20,12 @@ export function convertDiagnostics(result: MLResultInfo | null) {
 
 	for (const violation of result.violations) {
 		diagnostics.push({
-			severity: violation.severity === 'error' ? DiagnosticSeverity.Error : DiagnosticSeverity.Warning,
+			severity:
+				violation.severity === 'error'
+					? DiagnosticSeverity.Error
+					: violation.severity === 'warning'
+					? DiagnosticSeverity.Warning
+					: DiagnosticSeverity.Information,
 			range: {
 				start: {
 					line: Math.max(violation.line - 1, 0),
