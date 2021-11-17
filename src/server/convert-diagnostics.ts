@@ -31,7 +31,7 @@ export function convertDiagnostics(result: MLResultInfo | null) {
 					character: Math.max(violation.col + violation.raw.length - 1, 0),
 				},
 			},
-			message: violation.message,
+			message: violation.message + (violation.reason ? ' - ' + violation.reason : ''),
 			source: 'markuplint',
 			code: violation.ruleId,
 			codeDescription: {
