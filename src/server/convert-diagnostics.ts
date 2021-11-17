@@ -8,16 +8,6 @@ export function convertDiagnostics(result: MLResultInfo | null) {
 		return diagnostics;
 	}
 
-	console.log(new Date().toLocaleTimeString());
-	console.log(
-		[
-			`Linting: "${result.filePath}"`,
-			// `\tConfig: [${result.configSet.files.map((file) => `\n\t\t${file}`)}\n\t]`,
-			// `\tParser: ${result.parser}`,
-			// `\tResult: ${result.results.length} reports.`,
-		].join('\n'),
-	);
-
 	for (const violation of result.violations) {
 		diagnostics.push({
 			severity:

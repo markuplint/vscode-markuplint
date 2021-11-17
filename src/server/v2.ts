@@ -65,6 +65,8 @@ export function server(MLEngine: typeof MLEngineInstance, version: string, onLoc
 		console.log(file);
 
 		const engine = new MLEngine(file, {
+			// @ts-ignore
+			debug: true,
 			extMatch: true,
 			defaultConfig,
 			watch: true,
@@ -88,7 +90,17 @@ export function server(MLEngine: typeof MLEngineInstance, version: string, onLoc
 			if (debug) {
 				console.log(debug.join('\n'));
 			}
-			console.log('🎉', { violations });
+
+			const rep = violations.map(
+				(v) =>
+					`${v.line}:${v.col} [${v.severity}] ${v.message}${v.reason ? ` - ${v.reason}` : ''} (${v.ruleId})`,
+			);
+			const date = new Date().toLocaleDateString();
+			const time = new Date().toLocaleTimeString();
+
+			console.log(`Linted(${date} ${time}): ${opened.document.uri}`);
+			console.log('  |> ' + rep.join('\n  |> '));
+
 			const diagnostics = convertDiagnostics({ filePath, sourceCode, violations, fixedCode });
 			connection.sendDiagnostics({
 				uri: opened.document.uri,
@@ -105,10 +117,7 @@ export function server(MLEngine: typeof MLEngineInstance, version: string, onLoc
 		clearTimeout(debounceTimer);
 
 		const key = change.document.uri;
-		console.log(`Changed: ${key}`);
-
 		const engine = engines.get(key);
-		console.log({ engine });
 
 		debounceTimer = setTimeout(async () => {
 			if (!engine) {
