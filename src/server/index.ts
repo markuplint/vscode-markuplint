@@ -15,8 +15,8 @@ try {
 	version = require(`${modPath}/package.json`).version;
 } catch (err) {
 	console.log(err);
-	markuplint = require('markuplint-v1');
-	version = require('markuplint-v1/package.json').version;
+	markuplint = require('markuplint');
+	version = require('markuplint/package.json').version;
 	onLocalNodeModule = false;
 }
 
