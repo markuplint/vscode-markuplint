@@ -4,3 +4,7 @@ export const ready = new RequestType<{ version: string }, void, void>('markuplin
 export const error = new NotificationType<string>('markuplint/error');
 export const warning = new NotificationType<string>('markuplint/warning');
 export const info = new NotificationType<string>('markuplint/info');
+
+export type Config = {
+	enable: boolean;
+};
