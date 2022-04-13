@@ -46,8 +46,52 @@
 			"properties": {
 				"markuplint.enable": {
 					"type": "boolean",
-					"default": true,
-					"description": "Control whether markuplint is enabled for HTML files or not."
+					"description": "Control whether markuplint is enabled for HTML files or not.",
+					"default": true
+				},
+				"markuplint.debug": {
+					"type": "boolean",
+					"description": "Enable debug mode.",
+					"default": true
+				},
+				"markuplint.defaultConfig": {
+					"$ref": "https://raw.githubusercontent.com/markuplint/markuplint/main/config.schema.json",
+					"description": "It's the configuration specified if configuration files do not exist.",
+					"default": {
+						"rules": {
+							"attr-duplication": true,
+							"attr-equal-space-after": false,
+							"attr-equal-space-before": false,
+							"attr-spacing": false,
+							"attr-value-quotes": false,
+							"case-sensitive-attr-name": false,
+							"case-sensitive-tag-name": false,
+							"character-reference": false,
+							"class-naming": false,
+							"deprecated-attr": true,
+							"deprecated-element": true,
+							"disallowed-element": false,
+							"doctype": true,
+							"end-tag": false,
+							"id-duplication": true,
+							"indentation": false,
+							"ineffective-attr": false,
+							"invalid-attr": true,
+							"landmark-roles": true,
+							"no-boolean-attr-value": false,
+							"no-default-value": false,
+							"no-hard-code-id": false,
+							"no-refer-to-non-existent-id": true,
+							"no-use-event-handler-attr": true,
+							"permitted-contents": true,
+							"require-accessible-name": true,
+							"required-attr": true,
+							"required-element": true,
+							"required-h1": true,
+							"use-list": false,
+							"wai-aria": true
+						}
+					}
 				}
 			}
 		},

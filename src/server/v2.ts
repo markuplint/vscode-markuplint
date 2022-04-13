@@ -2,7 +2,6 @@ import type { MLEngine as _MLEngine } from 'markuplint';
 import type { TextDocumentChangeEvent, PublishDiagnosticsParams } from 'vscode-languageserver';
 import type { TextDocument } from 'vscode-languageserver-textdocument';
 
-import { defaultConfig } from '../default-config';
 import { Config } from '../types';
 import { getFilePath } from '../utils/get-file-path';
 import { convertDiagnostics } from './convert-diagnostics';
@@ -31,44 +30,48 @@ export async function onDidOpen(
 	console.log(file);
 
 	const engine = new MLEngine(file, {
-		debug: false,
-		defaultConfig,
+		debug: config.debug,
+		defaultConfig: config.defaultConfig,
 		watch: true,
 	});
 
 	engines.set(key, engine);
 
 	engine.on('config', (filePath, configSet) => {
-		// console.log(`get config: ${filePath}`, configSet);
+		if (config.debug) {
+			console.log(`get config: ${filePath}`, configSet);
+		}
 	});
 
 	engine.on('log', (phase, message) => {
-		// console.log(phase, message);
+		if (config.debug) {
+			console.log(phase, message);
+		}
 	});
 
-	engine.on('lint-error', (filePath, sourceCode, error) => {
-		// console.log('❌', { error });
+	engine.on('lint-error', (_filePath, _sourceCode, error) => {
+		if (config.debug) {
+			console.log('❌', { error });
+		}
 	});
 
 	engine.on('lint', (filePath, sourceCode, violations, fixedCode, debug) => {
-		// if (debug) {
-		// 	console.log(debug.join('\n'));
-		// }
+		if (config.debug && debug) {
+			console.log(debug.join('\n'));
+		}
 
-		const rep = violations.map(
-			(v) => `${v.line}:${v.col} [${v.severity}] ${v.message}${v.reason ? ` - ${v.reason}` : ''} (${v.ruleId})`,
-		);
 		const date = new Date().toLocaleDateString();
 		const time = new Date().toLocaleTimeString();
 
 		console.log(`Linted(${date} ${time}): ${opened.document.uri}`);
-		// console.log('  |> ' + rep.join('\n  |> '));
 
 		const diagnostics = convertDiagnostics({ filePath, sourceCode, violations, fixedCode });
 		sendDiagnostics({
 			uri: opened.document.uri,
 			diagnostics,
 		});
+
+		console.log(`diagnostics: ${diagnostics.length}`);
 	});
 
 	console.log('Call: exec');

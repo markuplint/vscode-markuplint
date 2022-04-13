@@ -76,16 +76,17 @@ export async function bootServer() {
 	}
 
 	documents.onDidOpen(async (e) => {
-		const config = await initialized;
 		if (satisfies(version, '1.x')) {
 			return;
 		}
+		const config = await initialized;
 		v2.onDidOpen(e, markuplint.MLEngine, config, sendDiagnostics);
 	});
 
-	documents.onDidChangeContent((e) => {
+	documents.onDidChangeContent(async (e) => {
 		if (satisfies(version, '1.x')) {
-			v1.onDidChangeContent(e, markuplint, sendDiagnostics);
+			const config = await initialized;
+			v1.onDidChangeContent(e, markuplint, config, sendDiagnostics);
 			return;
 		}
 		v2.onDidChangeContent(e);

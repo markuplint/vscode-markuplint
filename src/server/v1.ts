@@ -1,4 +1,3 @@
-import { defaultConfig } from '../default-config';
 import {
 	Diagnostic,
 	DiagnosticSeverity,
@@ -7,10 +6,12 @@ import {
 } from 'vscode-languageserver/node';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { getFilePath } from '../utils/get-file-path';
+import { Config } from '../types';
 
 export async function onDidChangeContent(
 	change: TextDocumentChangeEvent<TextDocument>,
 	markuplint: any,
+	config: Config,
 	sendDiagnostics: (params: PublishDiagnosticsParams) => void,
 ) {
 	const diagnostics: Diagnostic[] = [];
@@ -25,7 +26,7 @@ export async function onDidChangeContent(
 		workspace: file.dirname,
 		// Add option since markuplint v1.7.0 @see https://github.com/markuplint/markuplint/pull/167
 		extMatch: true,
-		defaultConfig,
+		defaultConfig: config.defaultConfig,
 	});
 
 	const result = totalResults[0];
