@@ -13,9 +13,8 @@ export async function onDidOpen(
 	MLEngine: typeof _MLEngine,
 	config: Config,
 	sendDiagnostics: (params: PublishDiagnosticsParams) => void,
+	notFoundParserError: (e: unknown) => void,
 ) {
-	console.log('Settings:', config);
-
 	const key = opened.document.uri;
 	console.log(`Opend: ${key}`);
 	const currentEngine = engines.get(key);
@@ -27,15 +26,11 @@ export async function onDidOpen(
 	const sourceCode = opened.document.getText();
 	const file = await MLEngine.toMLFile({ sourceCode, name: filePath.basename, workspace: filePath.dirname });
 
-	console.log(file);
-
 	const engine = new MLEngine(file, {
 		debug: config.debug,
 		defaultConfig: config.defaultConfig,
 		watch: true,
 	});
-
-	engines.set(key, engine);
 
 	engine.on('config', (filePath, configSet) => {
 		if (config.debug) {
@@ -74,13 +69,17 @@ export async function onDidOpen(
 		console.log(`diagnostics: ${diagnostics.length}`);
 	});
 
-	console.log('Call: exec');
-	engine.exec();
+	console.log('exec (onDidOpen)');
+
+	engine.exec().catch((e: unknown) => notFoundParserError(e));
 }
 
 let debounceTimer: NodeJS.Timer;
 
-export async function onDidChangeContent(change: TextDocumentChangeEvent<TextDocument>) {
+export async function onDidChangeContent(
+	change: TextDocumentChangeEvent<TextDocument>,
+	notFoundParserError: (e: unknown) => void,
+) {
 	clearTimeout(debounceTimer);
 
 	const key = change.document.uri;
@@ -93,7 +92,7 @@ export async function onDidChangeContent(change: TextDocumentChangeEvent<TextDoc
 
 		const code = change.document.getText();
 		await engine.setCode(code);
-		console.log('Call: exec from onDidChangeContent');
-		engine.exec();
+		console.log('exec (onDidChangeContent)');
+		engine.exec().catch((e: unknown) => notFoundParserError(e));
 	}, 300);
 }

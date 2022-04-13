@@ -47,12 +47,13 @@
 				"markuplint.enable": {
 					"type": "boolean",
 					"description": "Control whether markuplint is enabled for HTML files or not.",
+					"scope": "language-overridable",
 					"default": true
 				},
 				"markuplint.debug": {
 					"type": "boolean",
 					"description": "Enable debug mode.",
-					"default": true
+					"default": false
 				},
 				"markuplint.defaultConfig": {
 					"$ref": "https://raw.githubusercontent.com/markuplint/markuplint/main/config.schema.json",
@@ -126,7 +127,7 @@
 		"typescript": "^4.6.3"
 	},
 	"dependencies": {
-		"markuplint": "2",
+		"markuplint": "^2",
 		"markuplint-v1": "npm:markuplint@1",
 		"semver": "^7.3.6",
 		"vscode-languageclient": "^7.0.0",

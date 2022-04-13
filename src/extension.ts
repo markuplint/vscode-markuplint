@@ -1,7 +1,7 @@
 import path from 'path';
 import { window, workspace, ExtensionContext, StatusBarAlignment, commands } from 'vscode';
 import { LanguageClientOptions, LanguageClient, ServerOptions, TransportKind } from 'vscode-languageclient/node';
-import { error, info, ready, warning } from './types';
+import { configs, error, info, LangConfigs, ready, warning } from './types';
 
 let client: LanguageClient;
 
@@ -43,7 +43,14 @@ export function activate(context: ExtensionContext) {
 		'javascriptreact',
 		'typescript',
 		'typescriptreact',
-	];
+	] as const;
+
+	const langConfigs: LangConfigs = {};
+	languages.forEach((v) => {
+		langConfigs[v] = JSON.parse(
+			JSON.stringify(workspace.getConfiguration('', { languageId: v }).get('markuplint')),
+		);
+	});
 
 	const clientOptions: LanguageClientOptions = {
 		documentSelector: [
@@ -62,6 +69,8 @@ export function activate(context: ExtensionContext) {
 	client.start();
 
 	client.onReady().then(() => {
+		client.sendRequest(configs, langConfigs);
+
 		const statusBar = window.createStatusBarItem(StatusBarAlignment.Right, 0);
 
 		client.onRequest(ready, (data) => {

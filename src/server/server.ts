@@ -9,17 +9,11 @@ import {
 	PublishDiagnosticsParams,
 } from 'vscode-languageserver/node';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { Config, info, ready } from '../types';
+import { configs, error, info, LangConfigs, ready } from '../types';
 import Deferred from '../utils/deferred';
 import { getModule } from './get-module';
 import * as v1 from './v1';
 import * as v2 from './v2';
-
-export type Context = {
-	initialized: Deferred<Config>;
-	documents: TextDocuments<TextDocument>;
-	sendDiagnostics: (params: PublishDiagnosticsParams) => void;
-};
 
 export async function bootServer() {
 	const { markuplint, version, isLocalModule } = getModule();
@@ -37,59 +31,95 @@ export async function bootServer() {
 		};
 	});
 
-	const initialized = new Deferred<Config>();
+	const initialized = new Deferred<{
+		langConfigs: LangConfigs;
+		initUI: () => void;
+	}>();
 
 	connection.onInitialized(async () => {
-		const workspaceConfig = await connection.workspace.getConfiguration();
-		const config: Config = workspaceConfig?.markuplint ?? {};
+		const langConfigs = await new Promise<LangConfigs>((resolve) => {
+			connection.onRequest(configs, (langConfigs) => {
+				resolve(langConfigs);
+			});
+		});
 
-		if (!config.enable) {
-			console.log(`markuplint is disabled`);
-			return;
-		}
+		initialized.resolve({
+			langConfigs,
+			initUI() {
+				connection.sendRequest(ready, { version });
 
-		connection.sendRequest(ready, { version });
-
-		if (!isLocalModule) {
-			const locale = process.env.VSCODE_NLS_CONFIG ? JSON.parse(process.env.VSCODE_NLS_CONFIG).locale : '';
-			let msg: string;
-			switch (locale) {
-				case 'ja': {
-					msg = `ワークスペースのnode_modulesにmarkuplintが発見できなかったためVS Code拡張にインストールされているバージョン(v${version})を利用します。`;
-					break;
+				if (!isLocalModule) {
+					const locale = process.env.VSCODE_NLS_CONFIG
+						? JSON.parse(process.env.VSCODE_NLS_CONFIG).locale
+						: '';
+					let msg: string;
+					switch (locale) {
+						case 'ja': {
+							msg = `ワークスペースのnode_modulesにmarkuplintが発見できなかったためVS Code拡張にインストールされているバージョン(v${version})を利用します。`;
+							break;
+						}
+						default: {
+							msg = `Since markuplint could not be found in the node_modules of the workspace, this use the version (v${version}) installed in VS Code Extension.`;
+						}
+					}
+					connection.sendNotification(info, `<markuplint> ${msg}`);
 				}
-				default: {
-					msg = `Since markuplint could not be found in the node_modules of the workspace, this use the version (v${version}) installed in VS Code Extension.`;
-				}
-			}
-			connection.sendNotification(info, `<markuplint> ${msg}`);
-		}
-
-		console.log(`markuplint is enabled`);
-		console.log(`Ready: v${version}`);
-
-		initialized.resolve(config);
+			},
+		});
 	});
 
 	function sendDiagnostics(params: PublishDiagnosticsParams) {
 		connection.sendDiagnostics(params);
 	}
 
+	function notFoundParserError(languageId: string) {
+		return (e: unknown) => {
+			if (e instanceof Error) {
+				const { groups } = /Cannot find module.+(?<parser>@markuplint\/[a-z]+-parser)/.exec(e.message) || {};
+				const parser = groups?.parser;
+				connection.sendNotification(
+					error,
+					`Parser not found. You probably need to install ${parser} because it detected languageId: ${languageId}.`,
+				);
+				return;
+			}
+			throw e;
+		};
+	}
+
 	documents.onDidOpen(async (e) => {
+		const { langConfigs, initUI } = await initialized;
+		const languageId = e.document.languageId;
+		const config = langConfigs[languageId] || null;
+
+		if (!config?.enable) {
+			console.log(`markuplint is disabled (languageId: ${languageId})`);
+			return;
+		}
+
+		console.log(`markuplint is enabled (languageId: ${languageId})`);
+		initUI();
+
 		if (satisfies(version, '1.x')) {
 			return;
 		}
-		const config = await initialized;
-		v2.onDidOpen(e, markuplint.MLEngine, config, sendDiagnostics);
+		v2.onDidOpen(e, markuplint.MLEngine, config, sendDiagnostics, notFoundParserError(languageId));
 	});
 
 	documents.onDidChangeContent(async (e) => {
+		const { langConfigs } = await initialized;
+		const languageId = e.document.languageId;
+		const config = langConfigs[languageId] || null;
+
+		if (!config?.enable) {
+			return;
+		}
+
 		if (satisfies(version, '1.x')) {
-			const config = await initialized;
 			v1.onDidChangeContent(e, markuplint, config, sendDiagnostics);
 			return;
 		}
-		v2.onDidChangeContent(e);
+		v2.onDidChangeContent(e, notFoundParserError(languageId));
 	});
 
 	connection.listen();
