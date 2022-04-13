@@ -1,12 +1,22 @@
 # vscode-markuplint
 
-[markuplint](https://github.com/markuplint/markuplint) for Visual Studio Code
+[markuplint](https://markuplint.dev) for Visual Studio Code
 
 ## Extension Settings
 
--   `markuplint.enable`: enable/disable this extension
+-   `markuplint.enable`: Control whether markuplint is enabled for HTML files or not
+-   `markuplint.debug`: Enable debug mode
+-   `markuplint.defaultConfig`: It's the configuration specified if configuration files do not exist
 
 ## Release Notes
+
+### 2.1.0
+
+-   Fix: Crash when no-installed markuplint
+-   Change: Default loading version `2.x`
+-   Change: Add the setting `markuplint.defaultConfig`
+-   Change: Add the setting `markuplint.debug`
+-   Change: Make it possible to edit the setting per langages
 
 ### 2.0.3
 

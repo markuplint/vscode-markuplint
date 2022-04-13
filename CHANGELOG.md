@@ -2,6 +2,14 @@
 
 ## [Unreleased]
 
+## 2.1.0
+
+-   Fix: Crash when no-installed markuplint
+-   Change: Default loading version `2.x`
+-   Change: Add the setting `markuplint.defaultConfig`
+-   Change: Add the setting `markuplint.debug`
+-   Change: Make it possible to edit the setting per langages
+
 ## 2.0.3
 
 -   Change: Output the `reason`.
