@@ -32,6 +32,8 @@ export async function onDidOpen(
 		watch: true,
 	});
 
+	engines.set(key, engine);
+
 	engine.on('config', (filePath, configSet) => {
 		if (config.debug) {
 			console.log(`get config: ${filePath}`, configSet);
