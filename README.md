@@ -10,6 +10,10 @@
 
 ## Release Notes
 
+### 2.1.1
+
+-   Fix: Did not run when changing a document
+
 ### 2.1.0
 
 -   Fix: Crash when no-installed markuplint
