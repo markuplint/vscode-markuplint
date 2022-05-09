@@ -10,6 +10,11 @@
 
 ## Release Notes
 
+### 2.2.0
+
+-   Change: Supports `Smarty` format. (Needs `@markuplint/smarty-parser`)
+-   Fix: The evaluation stops if thrown an error
+
 ### 2.1.1
 
 -   Fix: Did not run when changing a document
