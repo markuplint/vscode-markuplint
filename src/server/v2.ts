@@ -93,8 +93,13 @@ export async function onDidChangeContent(
 		}
 
 		const code = change.document.getText();
-		await engine.setCode(code);
-		console.log('exec (onDidChangeContent)');
-		engine.exec().catch((e: unknown) => notFoundParserError(e));
+		try {
+			await engine.setCode(code);
+			console.log('exec (onDidChangeContent)');
+			engine.exec().catch((e: unknown) => notFoundParserError(e));
+		} catch (e) {
+			console.log(e);
+			// continue;
+		}
 	}, 300);
 }
