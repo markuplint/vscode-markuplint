@@ -32,6 +32,7 @@
 		"onLanguage:haml",
 		"onLanguage:jstl",
 		"onLanguage:php",
+		"onLanguage:smarty",
 		"onLanguage:ruby",
 		"onLanguage:javascript",
 		"onLanguage:javascriptreact",

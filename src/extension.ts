@@ -38,6 +38,7 @@ export function activate(context: ExtensionContext) {
 		'haml',
 		'jstl',
 		'php',
+		'smarty',
 		'ruby',
 		'javascript',
 		'javascriptreact',
