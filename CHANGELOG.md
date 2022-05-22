@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## 2.2.1
+
+-   Fix: Resolving a target path for Windows.
+
 ## 2.2.0
 
 -   Change: Supports `Smarty` format. (Needs `@markuplint/smarty-parser`)
