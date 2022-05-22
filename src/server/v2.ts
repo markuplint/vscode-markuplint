@@ -23,6 +23,10 @@ export async function onDidOpen(
 	}
 
 	const filePath = getFilePath(opened.document.uri, opened.document.languageId);
+	if (config.debug) {
+		console.log(filePath);
+	}
+
 	const sourceCode = opened.document.getText();
 	const file = await MLEngine.toMLFile({ sourceCode, name: filePath.basename, workspace: filePath.dirname });
 

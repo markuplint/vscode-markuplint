@@ -1,7 +1,16 @@
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 export function getFilePath(uri: string, langId: string) {
-	const decodePath = decodeURIComponent(uri);
+	if (/^untitled:/i.test(uri)) {
+		const name = uri.replace(/^untitled:/i, '');
+		const basename = `${name}.${langId}`;
+		return {
+			dirname: path.resolve(),
+			basename,
+		};
+	}
+	const decodePath = fileURLToPath(decodeURIComponent(uri));
 	let filePath: string;
 	let untitled = false;
 	if (/^file:/.test(decodePath)) {
