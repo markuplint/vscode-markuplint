@@ -7,6 +7,7 @@ import {
 	TextDocuments,
 	TextDocumentSyncKind,
 	PublishDiagnosticsParams,
+	MarkupKind,
 } from 'vscode-languageserver/node';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { configs, error, info, LangConfigs, ready } from '../types';
@@ -28,6 +29,7 @@ export async function bootServer() {
 		return {
 			capabilities: {
 				textDocumentSync: TextDocumentSyncKind.Incremental,
+				hoverProvider: true,
 			},
 		};
 	});
@@ -133,6 +135,38 @@ export async function bootServer() {
 		}
 
 		v3.onDidChangeContent(e, notFoundParserError(languageId));
+	});
+
+	connection.onHover(async (params) => {
+		const { langConfigs } = await initialized;
+		const showAccessibility = langConfigs['html']?.showAccessibility ?? true;
+
+		if (!showAccessibility) {
+			return;
+		}
+
+		const ariaVersion = typeof showAccessibility === 'boolean' ? '1.2' : showAccessibility.ariaVersion;
+
+		const node = v3.getNodeWithAccessibilityProps(params.textDocument, params.position, ariaVersion);
+
+		if (!node) {
+			return;
+		}
+
+		const heading = `\`<${node.nodeName}>\` **Computed Accessibility Properties**:\n`;
+
+		const props = node.exposed
+			? `${Object.entries(node.aria)
+					.map(([key, value]) => `- ${key}: ${value}`)
+					.join('\n')}`
+			: '\n**No exposed to accessibility tree** (hidden element)';
+
+		return {
+			contents: {
+				kind: MarkupKind.Markdown,
+				value: heading + props,
+			},
+		};
 	});
 
 	connection.listen();

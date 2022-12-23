@@ -121,3 +121,71 @@ export async function onDidChangeContent(
 		}
 	}, 300);
 }
+
+export function getNodeWithAccessibilityProps(
+	textDocument: TextDocumentIdentifier,
+	position: Position,
+	ariaVersion: ARIAVersion,
+): {
+	nodeName: string;
+	exposed: boolean;
+	aria: Record<string, string>;
+} | null {
+	const key = textDocument.uri;
+	const engine = engines.get(key);
+
+	if (!engine || !engine.document) {
+		return null;
+	}
+
+	const node = engine.document.searchNodeByLocation(position.line + 1, position.character);
+
+	if (!node || !node.is(node.ELEMENT_NODE)) {
+		return null;
+	}
+
+	const aria: Record<string, string> = {};
+
+	const exposed = isExposed(node, node.ownerMLDocument.specs, ariaVersion);
+
+	if (!exposed) {
+		return {
+			nodeName: node.localName,
+			exposed: false,
+			aria: {},
+		};
+	}
+
+	const role = getComputedRole(node.ownerMLDocument.specs, node, ariaVersion);
+	const name = getAccname(node).trim();
+	const focusable = mayBeFocusable(node, node.ownerMLDocument.specs);
+
+	const nameRequired = role.role?.accessibleNameRequired ?? false;
+	const nameProhibited = role.role?.accessibleNameProhibited ?? false;
+
+	const requiredLabel = '\u26A0\uFE0F**Required**';
+
+	aria.role = role.role?.name ? `\`${role.role.name}\`` : 'No corresponding role';
+	aria.name = nameProhibited
+		? '**Prohibited**'
+		: name
+		? `\`${name}\``
+		: `None${nameRequired ? ` ${requiredLabel}` : ''}`;
+	aria.focusable = `\`${focusable}\``;
+
+	Object.values(getComputedAriaProps(node.ownerMLDocument.specs, node, ariaVersion)).forEach((prop) => {
+		if (!prop.required) {
+			if (prop.from === 'default') {
+				return;
+			}
+		}
+		aria[prop.name.replace('aria-', '')] =
+			prop.value === undefined ? 'Undefined' + (prop.required ? ` ${requiredLabel}` : '') : `\`${prop.value}\``;
+	});
+
+	return {
+		nodeName: node.localName,
+		exposed: true,
+		aria,
+	};
+}

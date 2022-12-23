@@ -98,6 +98,7 @@
 		"typescript": "4.9.4"
 	},
 	"dependencies": {
+		"@markuplint/ml-spec": "next",
 		"markuplint": "next",
 		"semver": "^7.3.8",
 		"vscode-languageclient": "^8.0.2",
