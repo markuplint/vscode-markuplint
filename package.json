@@ -8,7 +8,7 @@
 	"repository": "https://github.com/markuplint/vscode-markuplint.git",
 	"icon": "media/icon.png",
 	"galleryBanner": {
-		"color": "#0071BC",
+		"color": "#1572eb",
 		"theme": "dark"
 	},
 	"engines": {
@@ -60,39 +60,9 @@
 					"$ref": "https://raw.githubusercontent.com/markuplint/markuplint/main/config.schema.json",
 					"description": "It's the configuration specified if configuration files do not exist.",
 					"default": {
-						"rules": {
-							"attr-duplication": true,
-							"attr-equal-space-after": false,
-							"attr-equal-space-before": false,
-							"attr-spacing": false,
-							"attr-value-quotes": false,
-							"case-sensitive-attr-name": false,
-							"case-sensitive-tag-name": false,
-							"character-reference": false,
-							"class-naming": false,
-							"deprecated-attr": true,
-							"deprecated-element": true,
-							"disallowed-element": false,
-							"doctype": true,
-							"end-tag": false,
-							"id-duplication": true,
-							"indentation": false,
-							"ineffective-attr": false,
-							"invalid-attr": true,
-							"landmark-roles": true,
-							"no-boolean-attr-value": false,
-							"no-default-value": false,
-							"no-hard-code-id": false,
-							"no-refer-to-non-existent-id": true,
-							"no-use-event-handler-attr": true,
-							"permitted-contents": true,
-							"require-accessible-name": true,
-							"required-attr": true,
-							"required-element": true,
-							"required-h1": true,
-							"use-list": false,
-							"wai-aria": true
-						}
+						"extends": [
+							"markuplint:recommended"
+						]
 					}
 				}
 			}
@@ -128,8 +98,7 @@
 		"typescript": "4.9.4"
 	},
 	"dependencies": {
-		"markuplint": "^2",
-		"markuplint-v1": "npm:markuplint@1",
+		"markuplint": "next",
 		"semver": "^7.3.8",
 		"vscode-languageclient": "^8.0.2",
 		"vscode-languageserver": "^8.0.2",

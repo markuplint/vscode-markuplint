@@ -14,6 +14,7 @@ import Deferred from '../utils/deferred';
 import { getModule } from './get-module';
 import * as v1 from './v1';
 import * as v2 from './v2';
+import * as v3 from './v3';
 
 export async function bootServer() {
 	const { markuplint, version, isLocalModule } = getModule();
@@ -103,7 +104,13 @@ export async function bootServer() {
 		if (satisfies(version, '1.x')) {
 			return;
 		}
-		v2.onDidOpen(e, markuplint.MLEngine, config, sendDiagnostics, notFoundParserError(languageId));
+
+		if (satisfies(version, '2.x')) {
+			v2.onDidOpen(e, markuplint.MLEngine, config, sendDiagnostics, notFoundParserError(languageId));
+			return;
+		}
+
+		v3.onDidOpen(e, markuplint.MLEngine, config, sendDiagnostics, notFoundParserError(languageId));
 	});
 
 	documents.onDidChangeContent(async (e) => {
@@ -119,7 +126,13 @@ export async function bootServer() {
 			v1.onDidChangeContent(e, markuplint, config, sendDiagnostics);
 			return;
 		}
-		v2.onDidChangeContent(e, notFoundParserError(languageId));
+
+		if (satisfies(version, '2.x')) {
+			v2.onDidChangeContent(e, notFoundParserError(languageId));
+			return;
+		}
+
+		v3.onDidChangeContent(e, notFoundParserError(languageId));
 	});
 
 	connection.listen();
