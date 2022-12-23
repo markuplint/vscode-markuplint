@@ -1,5 +1,5 @@
-import path from 'path';
-import { window, workspace, ExtensionContext, StatusBarAlignment, commands } from 'vscode';
+import path from 'node:path';
+import { window, workspace, ExtensionContext, StatusBarAlignment, commands, languages } from 'vscode';
 import { LanguageClientOptions, LanguageClient, ServerOptions, TransportKind } from 'vscode-languageclient/node';
 import { configs, error, info, LangConfigs, ready, warning } from './types';
 
@@ -24,7 +24,7 @@ export function activate(context: ExtensionContext) {
 		},
 	};
 
-	const languages = [
+	const languageList = [
 		'html',
 		'vue',
 		'jade',
@@ -47,16 +47,16 @@ export function activate(context: ExtensionContext) {
 	] as const;
 
 	const langConfigs: LangConfigs = {};
-	languages.forEach((v) => {
-		langConfigs[v] = JSON.parse(
-			JSON.stringify(workspace.getConfiguration('', { languageId: v }).get('markuplint')),
+	languageList.forEach((languageId) => {
+		langConfigs[languageId] = JSON.parse(
+			JSON.stringify(workspace.getConfiguration('', { languageId }).get('markuplint')),
 		);
 	});
 
 	const clientOptions: LanguageClientOptions = {
 		documentSelector: [
-			...languages.map((language) => ({ language, scheme: 'file' })),
-			...languages.map((language) => ({ language, scheme: 'untitled' })),
+			...languageList.map((language) => ({ language, scheme: 'file' })),
+			...languageList.map((language) => ({ language, scheme: 'untitled' })),
 		],
 		synchronize: {
 			configurationSection: 'markuplint',
@@ -67,9 +67,7 @@ export function activate(context: ExtensionContext) {
 	};
 
 	client = new LanguageClient('markuplint', 'markuplint', serverOptions, clientOptions);
-	client.start();
-
-	client.onReady().then(() => {
+	client.start().then(() => {
 		client.sendRequest(configs, langConfigs);
 
 		const statusBar = window.createStatusBarItem(StatusBarAlignment.Right, 0);
