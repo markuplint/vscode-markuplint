@@ -12,6 +12,11 @@
 
 ## Release Notes
 
+### 3.0.0
+
+-   Change: Support for **Markuplint** `v3.x`
+-   Change: Add the feature that **popup Accessibility Object**
+
 ### 2.2.1
 
 -   Fix: Mis-resolving a target path for Windows.
