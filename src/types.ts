@@ -12,11 +12,12 @@ export type Config = {
 	enable: boolean;
 	debug: boolean;
 	defaultConfig: MLConfig;
-	showAccessibility:
-		| boolean
-		| {
-				ariaVersion: ARIAVersion;
-		  };
+	hover: {
+		accessibility: {
+			enable: boolean;
+			ariaVersion: ARIAVersion;
+		};
+	}
 };
 
 export type LangConfigs = Record<string, Config>;
