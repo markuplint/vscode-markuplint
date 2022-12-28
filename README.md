@@ -1,6 +1,6 @@
 # vscode-markuplint
 
-[markuplint](https://markuplint.dev) for Visual Studio Code
+[Markuplint](https://markuplint.dev) for Visual Studio Code
 
 ## Extension Settings
 

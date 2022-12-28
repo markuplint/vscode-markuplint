@@ -1,7 +1,7 @@
 {
 	"name": "vscode-markuplint",
-	"displayName": "markuplint",
-	"description": "markuplint for VS Code",
+	"displayName": "Markuplint",
+	"description": "Markuplint for VS Code",
 	"version": "3.0.0",
 	"publisher": "yusukehirao",
 	"license": "MIT",
@@ -43,11 +43,11 @@
 	"contributes": {
 		"configuration": {
 			"type": "object",
-			"title": "markuplint configuration",
+			"title": "Markuplint configuration",
 			"properties": {
 				"markuplint.enable": {
 					"type": "boolean",
-					"description": "Control whether markuplint is enabled for HTML files or not.",
+					"description": "Control whether Markuplint is enabled for HTML files or not.",
 					"scope": "language-overridable",
 					"default": true
 				},
