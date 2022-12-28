@@ -139,13 +139,13 @@ export async function bootServer() {
 
 	connection.onHover(async (params) => {
 		const { langConfigs } = await initialized;
-		const showAccessibility = langConfigs['html']?.showAccessibility ?? true;
+		const accessibilityConfig = langConfigs['html']?.hover.accessibility ?? { enable: true, ariaVersion: '1.2' };
 
-		if (!showAccessibility) {
+		if (!accessibilityConfig.enable) {
 			return;
 		}
 
-		const ariaVersion = typeof showAccessibility === 'boolean' ? '1.2' : showAccessibility.ariaVersion;
+		const ariaVersion = accessibilityConfig.ariaVersion;
 
 		const node = v3.getNodeWithAccessibilityProps(params.textDocument, params.position, ariaVersion);
 
@@ -157,8 +157,8 @@ export async function bootServer() {
 
 		const props = node.exposed
 			? `${Object.entries(node.aria)
-					.map(([key, value]) => `- ${key}: ${value}`)
-					.join('\n')}`
+				.map(([key, value]) => `- ${key}: ${value}`)
+				.join('\n')}`
 			: '\n**No exposed to accessibility tree** (hidden element)';
 
 		return {
